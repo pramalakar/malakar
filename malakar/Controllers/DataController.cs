@@ -27,7 +27,7 @@ namespace malakar.Controllers
             return Ok("Hello " + identity.Name);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "superadmin")]
         [HttpGet]
         [Route("api/data/authorize")]
         public IHttpActionResult GetForAdmin()
