@@ -34,7 +34,7 @@ namespace malakar
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider(),
+                Provider = new ApplicationOAuthProvider("self"),
                 //AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(90),
                 // In production mode set AllowInsecureHttp = false
