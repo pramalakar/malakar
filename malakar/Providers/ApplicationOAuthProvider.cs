@@ -5,6 +5,8 @@ using System;
 using Microsoft.AspNet.Identity.Owin;
 using System.Collections.Generic;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.Cookies;
+using malakar.Models;
 
 namespace malakar.Providers
 {
@@ -22,22 +24,34 @@ namespace malakar.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
+            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            var user = await userManager.FindAsync(context.UserName, context.Password);
+            ApplicationUser user = await userManager.FindAsync(context.UserName.ToLower(), context.Password.ToLower());
+
             if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager);
-            var propertyDictionary = new Dictionary<string, string> {{"userName", user.UserName}};
-            var properties = new AuthenticationProperties(propertyDictionary);
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
+               OAuthDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
+                CookieAuthenticationDefaults.AuthenticationType);
 
+            AuthenticationProperties properties = CreateProperties(user.UserName);
             AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            // Token is validated.
             context.Validated(ticket);
+            context.Request.Context.Authentication.SignIn(cookiesIdentity);
+
+            //new Helpers.Logger().LogAccess(new LogAccess()
+            //{
+            //    UserID = user.UserID,
+            //    IPAddress = context.Request.RemoteIpAddress,
+            //    Validated = true
+            //});
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
@@ -68,6 +82,15 @@ namespace malakar.Providers
                     context.Validated();
             }
             return Task.FromResult<object>(null);
+        }
+
+        public static AuthenticationProperties CreateProperties(string userName)
+        {
+            IDictionary<string, string> data = new Dictionary<string, string>
+            {
+                { "userName", userName }
+            };
+            return new AuthenticationProperties(data);
         }
 
     }

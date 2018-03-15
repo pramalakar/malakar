@@ -1,4 +1,5 @@
-﻿using malakar.Models;
+﻿using malakar.Data;
+using malakar.Models;
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;

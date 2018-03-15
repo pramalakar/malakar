@@ -585,7 +585,8 @@ jQuery.extend({
 			}
 		}
 
-		jQuery.error( "Invalid JSON: " + data );
+		jQuery.error( "
+JSON: " + data );
 	},
 
 	// Cross-browser xml parsing

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using malakar.Data.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace malakar.Models
 {
-    public class User
+    public class User : EntityBase
     {
         public int ID { get; set; }
 
