@@ -1,12 +1,15 @@
 ﻿using malakar.Data;
 using malakar.Models;
+using malakar.Providers;
 using Microsoft.AspNet.Identity;
-using System;
-using System.Threading.Tasks;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web;
 using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
 
 namespace malakar.Controllers
 {
@@ -14,13 +17,16 @@ namespace malakar.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _AppRoleManager = null;
+
 
         public UsersController()
         {
         }
-        public UsersController(ApplicationUserManager userManager)
+        public UsersController(ApplicationUserManager userManager, ApplicationRoleManager appRoleManager)
         {
             UserManager = userManager;
+            AppRoleManager = appRoleManager;
         }
 
         public ApplicationUserManager UserManager
@@ -35,8 +41,28 @@ namespace malakar.Controllers
             }
         }
 
-        [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
+        protected ApplicationRoleManager AppRoleManager
+        {
+            get
+            {
+                return _AppRoleManager ?? Request.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _AppRoleManager = value;
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "superadmin, admin")]
+        [Route("api/Users/GetAllUsers")]
+        public dynamic GetAllUsers()
+        {
+            var result = UserManager.Users.ToList();
+            return result;
+        }
+
+        [HttpPost]
         public async Task<Boolean> Create(RegisterViewModel user)
         {
             if (ModelState.IsValid)
