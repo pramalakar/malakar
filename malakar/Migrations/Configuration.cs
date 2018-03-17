@@ -1,22 +1,18 @@
 namespace malakar.Migrations
 {
-    using Data;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<malakar.Data.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ApplicationDbContext context)
+        protected override void Seed(malakar.Data.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -30,24 +26,6 @@ namespace malakar.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            if (!context.Roles.Any(r => r.Name == "superadmin"))
-            {
-                var store = new RoleStore<IdentityRole>(context);
-                var manager = new RoleManager<IdentityRole>(store);
-                var role = new IdentityRole { Name = "superadmin" };
-
-                manager.Create(role);
-            }
-
-            if (!context.Users.Any(u => u.UserName == "superadmin"))
-            {
-                var store = new UserStore<ApplicationUser>(context);
-                var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "superadmin" };
-
-                manager.Create(user, "superadmin");
-                manager.AddToRole(user.Id, "superadmin");
-            }
         }
     }
 }

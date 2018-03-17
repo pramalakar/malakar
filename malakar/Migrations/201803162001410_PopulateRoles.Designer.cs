@@ -7,13 +7,13 @@ namespace malakar.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class ApplicationUsers : IMigrationMetadata
+    public sealed partial class PopulateRoles : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ApplicationUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateRoles));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803140947352_ApplicationUsers"; }
+            get { return "201803162001410_PopulateRoles"; }
         }
         
         string IMigrationMetadata.Source
