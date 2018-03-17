@@ -65,6 +65,10 @@ namespace malakar.Controllers
         [HttpPost]
         public async Task<Boolean> Create(RegisterViewModel user)
         {
+            if (user.RoleName == null)
+            {
+                user.RoleName = "user";
+            }
             if (ModelState.IsValid)
             {
                 var applicationUser = new ApplicationUser() { UserName = user.Email.ToLower(), Email = user.Email};
@@ -72,9 +76,10 @@ namespace malakar.Controllers
 
                 if (usrResult.Succeeded)
                 {
+                    usrResult = await UserManager.AddToRoleAsync(applicationUser.Id, user.RoleName);
                     await db.SaveChangesAsync();
+                    return true;
                 }
-                return false;
             }
             return false;
 
