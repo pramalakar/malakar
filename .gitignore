@@ -243,3 +243,6 @@ ModelManifest.xml
 /malakar/Migrations/201803161014050_UserModel.resx
 /malakar/Migrations/201803161014050_UserModel.Designer.cs
 /malakar/Migrations/201803161014050_UserModel.cs
+
+
+.idea/
