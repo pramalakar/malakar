@@ -63,6 +63,14 @@ namespace malakar.Controllers
         }
 
         [HttpPost]
+        [Route("api/Users/GetLoggedInUser")]
+        public dynamic GetLoggedInUser()
+        {
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+            return user;
+        }
+
+        [HttpPost]
         public async Task<Boolean> Create(RegisterViewModel user)
         {
             if (user.RoleName == null)
