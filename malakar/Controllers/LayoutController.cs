@@ -12,7 +12,7 @@ namespace malakar.Controllers
         {
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/Layout/GetLayout")]
         public IHttpActionResult getLayout()
         {
