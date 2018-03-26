@@ -232,6 +232,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Data\Abstract\EntityBase.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Data\Abstract\IRepositories.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="Data\Repositories\EntityBaseRepository.cs" />
+    <Compile Include="Data\Repositories\LayoutRepository.cs" />
     <Compile Include="Data\Repositories\Repositories.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -257,10 +259,25 @@
     <Compile Include="Migrations\201803162001410_PopulateRoles.Designer.cs">
       <DependentUpon>201803162001410_PopulateRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803260725347_AddLayout.cs" />
+    <Compile Include="Migrations\201803260725347_AddLayout.Designer.cs">
+      <DependentUpon>201803260725347_AddLayout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803260729485_AddWidgetRow.cs" />
+    <Compile Include="Migrations\201803260729485_AddWidgetRow.Designer.cs">
+      <DependentUpon>201803260729485_AddWidgetRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803260952475_AddWidget.cs" />
+    <Compile Include="Migrations\201803260952475_AddWidget.Designer.cs">
+      <DependentUpon>201803260952475_AddWidget.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\ApplicationUser.cs" />
+    <Compile Include="Models\Entities\Layout.cs" />
     <Compile Include="Models\Entities\Role.cs" />
+    <Compile Include="Models\Entities\Widget.cs" />
+    <Compile Include="Models\Entities\WidgetRow.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Entities\User.cs" />
@@ -351,6 +368,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803162001410_PopulateRoles.resx">
       <DependentUpon>201803162001410_PopulateRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803260725347_AddLayout.resx">
+      <DependentUpon>201803260725347_AddLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803260729485_AddWidgetRow.resx">
+      <DependentUpon>201803260729485_AddWidgetRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803260952475_AddWidget.resx">
+      <DependentUpon>201803260952475_AddWidget.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

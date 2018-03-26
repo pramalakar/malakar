@@ -15,6 +15,10 @@ namespace malakar.Data
 
         public DbSet<User> User { get; set; }
         public DbSet<Role> Role { get; set; }
+        public DbSet<Layout> Layout { get; set; }
+        public DbSet<WidgetRow> WidgetRow { get; set; }
+        public DbSet<Widget> Widget { get; set; }
+
 
         public static ApplicationDbContext Create()
         {
