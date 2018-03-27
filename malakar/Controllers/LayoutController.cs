@@ -1,4 +1,6 @@
-﻿using malakar.Data;
+﻿using AutoMapper;
+using malakar.Data;
+using malakar.Dtos;
 using malakar.Models;
 using System.Linq;
 using System.Net;
@@ -50,15 +52,18 @@ namespace malakar.Controllers
 
         [HttpPost]
         [Route("api/Layout/CreateLayout")]
-        public Layout createLayout(Layout layout)
+        public LayoutDto createLayout(LayoutDto layoutDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            var layout = Mapper.Map<LayoutDto, Layout>(layoutDto);
             layout.StatusID = 1;
             db.Layout.Add(layout);
             db.SaveChanges();
 
-            return layout;
+            layoutDto.Id = layout.Id;
+            return layoutDto;
         }
 
         //PUT /api/layout?id=1
