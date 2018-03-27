@@ -1,5 +1,7 @@
 ﻿using malakar.Data;
+using malakar.Models;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 
 namespace malakar.Controllers
@@ -44,6 +46,52 @@ namespace malakar.Controllers
                                     }
                         };
             return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("api/Layout/CreateLayout")]
+        public Layout createLayout(Layout layout)
+        {
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            layout.StatusID = 1;
+            db.Layout.Add(layout);
+            db.SaveChanges();
+
+            return layout;
+        }
+
+        //PUT /api/layout?id=1
+        [HttpPut]
+        [Route("api/Layout/UpdateLayout")]
+        public void updateLayout(int id, Layout layout)
+        {
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            var layoutInDb = db.Layout.SingleOrDefault(l => l.Id == id);
+
+            if (layoutInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            layoutInDb.Name = layout.Name;
+            layoutInDb.Description = layout.Description;
+
+            db.SaveChanges();
+        }
+
+        // DELETE /api/layout?id=1
+        [HttpDelete]
+        [Route("api/Layout/DeleteLayout")]
+        public void deleteLayout(int id)
+        {
+            var layoutInDb = db.Layout.SingleOrDefault(l => l.Id == id);
+
+            if (layoutInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            db.Layout.Remove(layoutInDb);
+            db.SaveChanges();
         }
     }
 }
