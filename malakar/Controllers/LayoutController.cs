@@ -69,7 +69,7 @@ namespace malakar.Controllers
         //PUT /api/layout?id=1
         [HttpPut]
         [Route("api/Layout/UpdateLayout")]
-        public void updateLayout(int id, Layout layout)
+        public void updateLayout(int id, LayoutDto layoutDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -78,10 +78,9 @@ namespace malakar.Controllers
 
             if (layoutInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-
-            layoutInDb.Name = layout.Name;
-            layoutInDb.Description = layout.Description;
-
+            
+            Mapper.Map<LayoutDto, Layout>(layoutDto, layoutInDb);
+            
             db.SaveChanges();
         }
 
