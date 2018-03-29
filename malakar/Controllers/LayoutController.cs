@@ -21,13 +21,13 @@ namespace malakar.Controllers
         public IHttpActionResult getLayout()
         {
             var result = from layout in db.Layout
-                         where layout.StatusID == 1
                          select new
                         {
                             layout.Id,
                             layout.Name,
                             layout.Description,
-                            WidgetRow = from widgetRow in db.WidgetRow
+                            layout.StatusID,
+                             WidgetRow = from widgetRow in db.WidgetRow
                                     where widgetRow.LayoutId == layout.Id
                                     select new
                                     {
@@ -57,8 +57,9 @@ namespace malakar.Controllers
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            //layoutDto.StatusID = 1;
             var layout = Mapper.Map<LayoutDto, Layout>(layoutDto);
-            layout.StatusID = 1;
+
             db.Layout.Add(layout);
             db.SaveChanges();
 
@@ -82,6 +83,30 @@ namespace malakar.Controllers
             Mapper.Map<LayoutDto, Layout>(layoutDto, layoutInDb);
             
             db.SaveChanges();
+        }
+
+
+        //PUT /api/layout?id=1
+        [HttpPost]
+        [Route("api/Layout/ActivateLayout")]
+        public IHttpActionResult activateLayout(int id)
+        {
+            //First deactivate active layout
+            var activeLayoutInDb = db.Layout.SingleOrDefault(l => l.StatusID == 1);
+            if (activeLayoutInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            activeLayoutInDb.StatusID = 0; //Active 1, Inactive 0, Deleted 2
+            db.SaveChanges();
+
+            //Then activate user selected layout
+            var layoutInDb = db.Layout.SingleOrDefault(l => l.Id == id);
+            if (layoutInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            layoutInDb.StatusID = 1; //Active 1, Inactive 0, Deleted 2
+            db.SaveChanges();
+
+            var result = new { activeId = layoutInDb.Id, inactiveId = activeLayoutInDb.Id };
+            return Ok(result);
         }
 
         // DELETE /api/layout?id=1
