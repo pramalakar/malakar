@@ -27,6 +27,7 @@ namespace malakar.Controllers
                              widgetRow.Id,
                              widgetRow.Title,
                              widgetRow.Order,
+                             widgetRow.LayoutId,
                              widget = from widget in db.Widget
                                       where widget.WidgetRowId == widgetRow.Id
                                       select new

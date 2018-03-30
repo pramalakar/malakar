@@ -241,6 +241,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
+    <Compile Include="Controllers\WidgetRowController.cs" />
     <Compile Include="Data\Abstract\EntityBase.cs" />
     <Compile Include="Data\Abstract\IEntityBase.cs" />
     <Compile Include="Data\Abstract\IEntityBaseRepository.cs" />
@@ -250,6 +251,7 @@
     <Compile Include="Data\Repositories\LayoutRepository.cs" />
     <Compile Include="Data\Repositories\Repositories.cs" />
     <Compile Include="Dtos\LayoutDto.cs" />
+    <Compile Include="Dtos\WidgetRowDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
