@@ -19,6 +19,23 @@ namespace malakar.Controllers
         {
         }
 
+        [HttpPost]
+        [Route("api/WidgetRow/CreateWidgetRow")]
+        public WidgetRowDto createWidgetRow(WidgetRowDto widgetRowDto)
+        {
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            //layoutDto.StatusID = 1;
+            var widgetRow = Mapper.Map<WidgetRowDto, WidgetRow>(widgetRowDto);
+
+            db.WidgetRow.Add(widgetRow);
+            db.SaveChanges();
+
+            widgetRowDto.Id = widgetRow.Id;
+            return widgetRowDto;
+        }
+
         //PUT /api/widgetrow?id=1
         [HttpPut]
         [Route("api/WidgetRow/UpdateWidgetRow")]
