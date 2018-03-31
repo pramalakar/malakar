@@ -21,14 +21,24 @@ namespace malakar.Controllers
         [Route("api/Article/GetArticlesByCategory")]
         public IHttpActionResult getArticlesByCategory(int id)
         {
-            var result = from article in db.Article
+            var result = (from article in db.Article
                          from ab in article.ArticleCategoryToArticle
                          where ab.ArticleCategoryId == id
                          select new
                          {
-                             ab.Article
-                         };
-            return Ok(result);
+                             ab.Article.Id,
+                             ab.Article.Title,
+                             ab.Article.Brief,
+                             ab.Article.Content,
+                             ab.Article.Published,
+                             ab.Article.Date,
+                             ab.Article.Banner,
+                             ab.Article.OwnerId,
+                             //ab.Article.ArticleCategoryToArticle,
+                             ab.Article.StatusID,
+                             ab.Article.DateAdded
+                         });
+            return Ok(result.ToList());
         }
 
     }

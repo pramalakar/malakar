@@ -20,6 +20,9 @@ namespace malakar.App_Start
 
             Mapper.CreateMap<Widget, WidgetDto>();
             Mapper.CreateMap<WidgetDto, Widget>();
+
+            Mapper.CreateMap<Article, ArticleDto>();
+            Mapper.CreateMap<ArticleDto, Article>();
         }
     }
 }
