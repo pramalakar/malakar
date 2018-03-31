@@ -17,6 +17,9 @@ namespace malakar.App_Start
 
             Mapper.CreateMap<WidgetRow, WidgetRowDto>();
             Mapper.CreateMap<WidgetRowDto, WidgetRow>();
+
+            Mapper.CreateMap<Widget, WidgetDto>();
+            Mapper.CreateMap<WidgetDto, Widget>();
         }
     }
 }

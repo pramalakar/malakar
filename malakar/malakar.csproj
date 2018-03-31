@@ -251,6 +251,7 @@
     <Compile Include="Data\Repositories\LayoutRepository.cs" />
     <Compile Include="Data\Repositories\Repositories.cs" />
     <Compile Include="Dtos\LayoutDto.cs" />
+    <Compile Include="Dtos\WidgetDto.cs" />
     <Compile Include="Dtos\WidgetRowDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

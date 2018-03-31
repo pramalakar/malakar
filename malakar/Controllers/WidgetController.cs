@@ -1,4 +1,7 @@
-﻿using malakar.Data;
+﻿using AutoMapper;
+using malakar.Data;
+using malakar.Dtos;
+using malakar.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +44,22 @@ namespace malakar.Controllers
                                       }
                          };
             return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("api/Widget/CreateWidget")]
+        public WidgetDto createWidget(WidgetDto widgetDto)
+        {
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            var widget = Mapper.Map<WidgetDto, Widget>(widgetDto);
+
+            db.Widget.Add(widget);
+            db.SaveChanges();
+
+            widgetDto.Id = widget.Id;
+            return widgetDto;
         }
     }
 }
