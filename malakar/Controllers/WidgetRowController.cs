@@ -54,5 +54,20 @@ namespace malakar.Controllers
             db.SaveChanges();
         }
 
+        // DELETE /api/widgetrow?id=1
+        [HttpDelete]
+        [Route("api/WidgetRow/DeleteWidgetRow")]
+        public void deleteWidgetRow(int id)
+        {
+            var widgetRowInDb = db.WidgetRow.SingleOrDefault(l => l.Id == id);
+
+            if (widgetRowInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            db.WidgetRow.Remove(widgetRowInDb);
+            db.SaveChanges();
+            //Also deletes records from 'Widgets' table linked to 'WidgetRow' table
+        }
+
     }
 }
