@@ -18,7 +18,8 @@ namespace malakar.Data
         public DbSet<Layout> Layout { get; set; }
         public DbSet<WidgetRow> WidgetRow { get; set; }
         public DbSet<Widget> Widget { get; set; }
-
+        public DbSet<ArticleCategory> ArticleCategory { get; set; }
+        public DbSet<Article> Article { get; set; }
 
         public static ApplicationDbContext Create()
         {

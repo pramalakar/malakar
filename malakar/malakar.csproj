@@ -281,9 +281,20 @@
     <Compile Include="Migrations\201803260952475_AddWidget.Designer.cs">
       <DependentUpon>201803260952475_AddWidget.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803310507392_AddArticleCategory.cs" />
+    <Compile Include="Migrations\201803310507392_AddArticleCategory.Designer.cs">
+      <DependentUpon>201803310507392_AddArticleCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803310957031_AddArticle.cs" />
+    <Compile Include="Migrations\201803310957031_AddArticle.Designer.cs">
+      <DependentUpon>201803310957031_AddArticle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\ApplicationUser.cs" />
+    <Compile Include="Models\Entities\Article.cs" />
+    <Compile Include="Models\Entities\ArticleCategory.cs" />
+    <Compile Include="Models\Entities\ArticleCategoryToArticle.cs" />
     <Compile Include="Models\Entities\Layout.cs" />
     <Compile Include="Models\Entities\Role.cs" />
     <Compile Include="Models\Entities\Widget.cs" />
@@ -309,6 +320,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -387,6 +399,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803260952475_AddWidget.resx">
       <DependentUpon>201803260952475_AddWidget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803310507392_AddArticleCategory.resx">
+      <DependentUpon>201803310507392_AddArticleCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803310957031_AddArticle.resx">
+      <DependentUpon>201803310957031_AddArticle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
