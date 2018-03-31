@@ -20,6 +20,7 @@ namespace malakar.Data
         public DbSet<Widget> Widget { get; set; }
         public DbSet<ArticleCategory> ArticleCategory { get; set; }
         public DbSet<Article> Article { get; set; }
+        public DbSet<ArticleCategoryToArticle> ArticleCategoryToArticle { get; set; }
 
         public static ApplicationDbContext Create()
         {

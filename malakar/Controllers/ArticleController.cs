@@ -1,0 +1,35 @@
+﻿using malakar.Data;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace malakar.Controllers
+{
+    public class ArticleController : ApiController
+    {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        public ArticleController()
+        {
+        }
+
+        //POST /api/Article/GetArticlesByCategory?id=1
+        [HttpGet]
+        [Route("api/Article/GetArticlesByCategory")]
+        public IHttpActionResult getArticlesByCategory(int id)
+        {
+            var result = from article in db.Article
+                         from ab in article.ArticleCategoryToArticle
+                         where ab.ArticleCategoryId == id
+                         select new
+                         {
+                             ab.Article
+                         };
+            return Ok(result);
+        }
+
+    }
+}

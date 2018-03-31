@@ -235,6 +235,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
@@ -285,9 +286,13 @@
     <Compile Include="Migrations\201803310507392_AddArticleCategory.Designer.cs">
       <DependentUpon>201803310507392_AddArticleCategory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803310957031_AddArticle.cs" />
-    <Compile Include="Migrations\201803310957031_AddArticle.Designer.cs">
-      <DependentUpon>201803310957031_AddArticle.cs</DependentUpon>
+    <Compile Include="Migrations\201803312143424_AddArticle.cs" />
+    <Compile Include="Migrations\201803312143424_AddArticle.Designer.cs">
+      <DependentUpon>201803312143424_AddArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803312146059_AddArticleCategoryToArticle.cs" />
+    <Compile Include="Migrations\201803312146059_AddArticleCategoryToArticle.Designer.cs">
+      <DependentUpon>201803312146059_AddArticleCategoryToArticle.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -403,8 +408,11 @@
     <EmbeddedResource Include="Migrations\201803310507392_AddArticleCategory.resx">
       <DependentUpon>201803310507392_AddArticleCategory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803310957031_AddArticle.resx">
-      <DependentUpon>201803310957031_AddArticle.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803312143424_AddArticle.resx">
+      <DependentUpon>201803312143424_AddArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803312146059_AddArticleCategoryToArticle.resx">
+      <DependentUpon>201803312146059_AddArticleCategoryToArticle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

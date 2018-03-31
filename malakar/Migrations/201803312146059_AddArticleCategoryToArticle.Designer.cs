@@ -7,13 +7,13 @@ namespace malakar.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddArticle : IMigrationMetadata
+    public sealed partial class AddArticleCategoryToArticle : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddArticle));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddArticleCategoryToArticle));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803310957031_AddArticle"; }
+            get { return "201803312146059_AddArticleCategoryToArticle"; }
         }
         
         string IMigrationMetadata.Source

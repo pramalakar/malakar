@@ -1,4 +1,5 @@
 ﻿using malakar.Data.Abstract;
+using malakar.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -24,5 +25,7 @@ namespace malakar.Models
         public DateTime Date { get; set; }
         public string Banner { get; set; }
         public int OwnerId { get; set; }
+
+        public virtual ICollection<ArticleCategoryToArticle> ArticleCategoryToArticle { get; set; }
     }
 }
