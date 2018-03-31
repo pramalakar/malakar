@@ -62,6 +62,24 @@ namespace malakar.Controllers
             return widgetDto;
         }
 
+        //PUT /api/widget?id=1
+        [HttpPut]
+        [Route("api/Widget/UpdateWidget")]
+        public void updateWidget(int id, WidgetDto widgetDto)
+        {
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            var widgetInDb = db.Widget.SingleOrDefault(l => l.Id == id);
+
+            if (widgetInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            Mapper.Map<WidgetDto, Widget>(widgetDto, widgetInDb);
+
+            db.SaveChanges();
+        }
+
         // DELETE /api/layout?id=1
         [HttpDelete]
         [Route("api/Widget/DeleteWidget")]
