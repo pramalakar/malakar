@@ -61,5 +61,19 @@ namespace malakar.Controllers
             widgetDto.Id = widget.Id;
             return widgetDto;
         }
+
+        // DELETE /api/layout?id=1
+        [HttpDelete]
+        [Route("api/Widget/DeleteWidget")]
+        public void deleteLayout(int id)
+        {
+            var widgetInDb = db.Widget.SingleOrDefault(l => l.Id == id);
+
+            if (widgetInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            db.Widget.Remove(widgetInDb);
+            db.SaveChanges();
+        }
     }
 }
