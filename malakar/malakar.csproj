@@ -305,6 +305,7 @@
     <Compile Include="Models\Entities\Role.cs" />
     <Compile Include="Models\Entities\Widget.cs" />
     <Compile Include="Models\Entities\WidgetRow.cs" />
+    <Compile Include="Models\Helpers\SearchArticle.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Entities\User.cs" />
