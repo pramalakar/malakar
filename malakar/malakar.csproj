@@ -235,6 +235,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleCategoryController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\DataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -251,6 +252,7 @@
     <Compile Include="Data\Repositories\EntityBaseRepository.cs" />
     <Compile Include="Data\Repositories\LayoutRepository.cs" />
     <Compile Include="Data\Repositories\Repositories.cs" />
+    <Compile Include="Dtos\ArticleCategoryDto.cs" />
     <Compile Include="Dtos\ArticleDto.cs" />
     <Compile Include="Dtos\LayoutDto.cs" />
     <Compile Include="Dtos\WidgetDto.cs" />

@@ -23,6 +23,9 @@ namespace malakar.App_Start
 
             Mapper.CreateMap<Article, ArticleDto>();
             Mapper.CreateMap<ArticleDto, Article>();
+
+            Mapper.CreateMap<ArticleCategory, ArticleCategoryDto>();
+            Mapper.CreateMap<ArticleCategoryDto, ArticleCategory>();
         }
     }
 }

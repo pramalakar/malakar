@@ -17,7 +17,7 @@ namespace malakar.Controllers
         {
         }
 
-        //POST /api/Article/GetArticlesByCategory?id=1
+        //Get /api/Article/GetArticlesByCategory?id=1
         [HttpGet]
         [Route("api/Article/GetArticlesByCategory")]
         public IHttpActionResult getArticlesByCategory(int id)
