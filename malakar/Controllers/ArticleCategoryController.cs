@@ -54,12 +54,12 @@ namespace malakar.Controllers
 
         [HttpPost]
         [Route("api/Article/CreateCategory")]
-        public ArticleCategoryDto createLayout(ArticleCategoryDto articleCategoryDto)
+        public ArticleCategoryDto createCategory(ArticleCategoryDto articleCategoryDto)
         {
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
-            //layoutDto.StatusID = 1;
+            articleCategoryDto.StatusID = 1;
             var articleCategory = Mapper.Map<ArticleCategoryDto, ArticleCategory>(articleCategoryDto);
 
             db.ArticleCategory.Add(articleCategory);
@@ -67,6 +67,20 @@ namespace malakar.Controllers
 
             articleCategoryDto.Id = articleCategory.Id;
             return articleCategoryDto;
+        }
+
+        // DELETE /api/category?id=1
+        [HttpDelete]
+        [Route("api/Article/DeleteCategory")]
+        public void deleteCategory(int id)
+        {
+            var categoryInDb = db.ArticleCategory.SingleOrDefault(l => l.Id == id);
+
+            if (categoryInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            db.ArticleCategory.Remove(categoryInDb);
+            db.SaveChanges();
         }
 
     }

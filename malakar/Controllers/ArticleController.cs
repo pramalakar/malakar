@@ -1,4 +1,8 @@
-﻿using malakar.Data;
+﻿using AutoMapper;
+using malakar.Data;
+using malakar.Dtos;
+using malakar.Models;
+using malakar.Models.Entities;
 using malakar.Models.Helpers;
 using System;
 using System.Collections.Generic;
@@ -87,5 +91,33 @@ namespace malakar.Controllers
             }
         }
 
-    }
+        [HttpPost]
+        [Route("api/Article/CreateArticle")]
+        public ArticleDto createLayout(int id, ArticleDto articleDto)
+        {
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            var articleCategory = db.ArticleCategory.Where(c => c.Id == id).SingleOrDefault();
+            if (articleCategory != null)
+            {
+                articleDto.StatusID = 1;
+                var article = Mapper.Map<ArticleDto, Article>(articleDto);
+
+                var articleCategoryToArticle = new ArticleCategoryToArticle
+                {
+                    Article = article,
+                    ArticleCategory = articleCategory
+                };
+
+                db.ArticleCategoryToArticle.Add(articleCategoryToArticle);
+                db.SaveChanges();
+
+                articleDto.Id = article.Id;
+                return articleDto;
+            }
+            return null;
+        }
+
+}
 }
