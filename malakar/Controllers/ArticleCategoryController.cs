@@ -47,7 +47,8 @@ namespace malakar.Controllers
                              articleCategory.Id,
                              articleCategory.Name,
                              articleCategory.Content,
-                             articleCategory.Banner
+                             articleCategory.Banner,
+                             articleCategory.StatusID
                          };
             return Ok(result);
         }
@@ -69,6 +70,7 @@ namespace malakar.Controllers
             return articleCategoryDto;
         }
 
+        //TODO delete category record in articleCategoryToArticles table also
         // DELETE /api/category?id=1
         [HttpDelete]
         [Route("api/Article/DeleteCategory")]
@@ -80,6 +82,26 @@ namespace malakar.Controllers
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
             db.ArticleCategory.Remove(categoryInDb);
+            db.SaveChanges();
+        }
+
+        //PUT /api/article/updateCategory
+        //Update status = 2 to delete category (Active 1, Inactive 0, Deleted 2)
+        //Category contains articles, so not actually deleted but just set status to deleted
+        [HttpPut]
+        [Route("api/Article/UpdateCategory")]
+        public void updateCategory(int id, ArticleCategoryDto articleCategoryDto)
+        {
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+
+            var categoryInDb = db.ArticleCategory.SingleOrDefault(c => c.Id == id);
+
+            if (categoryInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            Mapper.Map<ArticleCategoryDto, ArticleCategory>(articleCategoryDto, categoryInDb);
+
             db.SaveChanges();
         }
 
