@@ -71,6 +71,7 @@ namespace malakar.Controllers
         }
 
         [HttpPost]
+        [Route("api/Users/CreateUser")]
         public async Task<Boolean> Create(RegisterViewModel user)
         {
             if (user.RoleName == null)
