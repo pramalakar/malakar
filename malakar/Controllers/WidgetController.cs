@@ -2,6 +2,7 @@
 using malakar.Data;
 using malakar.Dtos;
 using malakar.Models;
+using malakar.Models.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +93,13 @@ namespace malakar.Controllers
 
             db.Widget.Remove(widgetInDb);
             db.SaveChanges();
+        }
+
+        [HttpGet]
+        [Route("api/Widget/AllTypes")]
+        public IHttpActionResult GetAddressTypes()
+        {
+            return Ok(EnumExtensions.GetValues<WidgetTypes>());
         }
     }
 }
