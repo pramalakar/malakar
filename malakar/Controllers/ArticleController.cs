@@ -119,20 +119,5 @@ namespace malakar.Controllers
             return null;
         }
 
-        [HttpPost]
-        [Route("api/Article/ArticleReport")]
-        public dynamic ArticleReport()
-        {
-            var data = from article in db.Article
-                       group article by article.DateAdded into dateGroup
-
-                       select new
-                       {
-                           date = dateGroup.Key,
-                           count = dateGroup.Count()
-                       };
-            return data;
-        }
-
-    }
+}
 }
